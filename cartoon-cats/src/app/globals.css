@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at 20% 20%, #fce7f3 0, transparent 40%),
+    radial-gradient(circle at 80% 10%, #ede9fe 0, transparent 45%),
+    radial-gradient(circle at 50% 90%, #cffafe 0, transparent 60%),
+    linear-gradient(135deg, #0f172a, #020617);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+}
+
+.glow-ring {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.8;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 184, 231, 0.38), transparent 65%);
+  animation: pulse-glow 6s ease-in-out infinite;
+}
+
+.sparkle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9), transparent 70%);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.sparkle::after {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6), transparent 70%);
+  opacity: 0.8;
+}
+
+.floating {
+  animation: floaty 5.4s ease-in-out infinite;
+}
+
+.floating-delayed {
+  animation: floaty 6.6s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.9);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.08);
+  }
+}
